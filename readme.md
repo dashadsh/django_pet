@@ -245,7 +245,7 @@ This command generates and displays the SQL queries that will be run for the mig
 
 # 10. Create template
 
-1. Create templates/todos/todo_list.html:
+1. Create templates/todos/todo_list.html as stated in 00.html:
 	```bash
 		<!DOCTYPE html>
 	<html lang="en">
@@ -260,10 +260,15 @@ This command generates and displays the SQL queries that will be run for the mig
 
 	</body>
 	</html>
-	````
+	```
+Check out 01.html and 02.html.
 
-2. Add bootstrap 
+2. Modify views.py by encluding new response:
+	```bash
+	def list_todo_items(request):
+		return render(request, 'todos/02.html')
+	```
 
-3. Add font-awesome
+
 
 
