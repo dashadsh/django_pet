@@ -1,5 +1,5 @@
 """
-URL configuration for todolist_project project.
+URL configuration for TodoProject project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
@@ -16,20 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-####### NEW #######
-from tasks import views  # Import the views module from the tasks app
-####### NEW #######
 
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-# ]
-
-####### NEW #######
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.task_list, name='task_list'),
-    path('add/', views.add_task, name='add_task'),
-    path('complete/<int:pk>/', views.mark_completed, name='mark_completed'),
-    path('delete/<int:pk>/', views.delete_task, name='delete_task'),
 ]
-####### NEW #######
