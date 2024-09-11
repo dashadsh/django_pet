@@ -1,23 +1,23 @@
 This is a step-by-step guide for beginners to create a simple Django web application using PostgreSQL and the Bootstrap toolkit.
 
 **Project prerequisites:**
-python
-pip
-postgresql
+Python
+Pip
+Postgresql (Database system)
 psycopg2-binary (PostgreSQL database adapter for Python)
 
-**Create project**
+**Start a new django prohjectt**
 django-admin startproject TodoProject
 cd TodoProject 
 
-**Test init setup - run development server, see how default django works**
+**Test the init setup - run the development server**
 python3 manage.py runserver
 
 **Project structure**
 Parent TodoProject folder contains another folder with the same name, 
 which respectively contains main python configiration files.
 
-We can have as many applycations as we need.
+We can have as many applcations as we need.
 In this project I'm creating a new app called "todos".
 
 TodoProject
@@ -25,11 +25,11 @@ TodoProject
 |---- TodoProject
 |    |
 |    |--setting.py (project configuration file)
-|    |--urls.py (routing/url mapping for the project)
+|    |--urls.py (routing and URL mapping for the project)
 |
 +---● todos (app folder)
 |   |
-|   +--● migrations (includes files related to migrations)
+|   +--● migrations (files related to database migrations)
 |   | 
 |   +--● static
 |   |  |--● todos
@@ -39,15 +39,15 @@ TodoProject
 |   |  |--● todos
 |   |  |  |--todo_list.html
 |   | 
-|   |-- models.py (python class for each database table)
-|   |-- urls.py (app. specific url mapping)
-|   |-- views.py (view fns. to handle http request)
+|   |-- models.py (Python classes for database tables)
+|   |-- urls.py (app-specific URL mapping)
+|   |-- views.py (view functions to handle HTTP requests)
 
 
-**Create an app (from parent directory)**
+**Create a Django app (from parent directory)**
 python3 manage.py startapp todos
 
-**Tell the preject, we created new app, in settings.py**
+**Add the App to the Project in settings.py**
 INSTALLED_APPS = [
     # Other Django apps
     'todos',
@@ -134,4 +134,23 @@ psql tododb
 # Query the table
 SELECT * FROM todos_todo;
 
-**Configure routing for the app**
+**Configure routing for the app in urls.py**
+# Create todos/urls.py
+# Modify urls.py, add path to newly created file to main urls.py
+from django.urls import path, include
+urlpatterns = [
+    # existing admin path
+	path('todos/', include('todos.urls')),
+]
+# Modify todos/urls.py:
+from djando.urls import path
+from . import views
+
+urlpatterns = [
+	path('list/', views.list_todo_items),
+]
+
+# Modify todos/views.py
+from django.http import HttpResponse
+def list_todo_items(request):
+	return HttpResponse('You are seeing HttpResponse from list_todo_items view.')
