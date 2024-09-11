@@ -37,7 +37,30 @@ We can have as many applications as we need. In this project, I'm creating a new
 
 Project will have the following structure:
 
-TodoProject\ │ ├── TodoProject\ │ ├── init.py │ ├── settings.py # Project configuration file │ ├── urls.py # Routing and URL mapping │ └── wsgi.py │ ├── todos\ # New app for To-Do items │ ├── migrations\ # Auto-generated database migration files │ ├── static\ # Static files like CSS/JS │ │ └── todos\ │ │ └── styles.css │ ├── templates\ # HTML templates │ │ └── todos\ │ │ └── todo_list.html │ ├── models.py # Database models (tables) │ ├── urls.py # App-specific URL mapping │ └── views.py # Views to handle HTTP requests └── manage.py
+	```bash
+	● TodoProject
+	|
+	+---● todos (app folder)
+	|   |
+	|   +--● migrations (includes files related to migrations)
+	|   | 
+	|   +--● static
+	|   |  |--● todos
+	|   |  |  |--styles.css
+	|   |  
+	|   +--● templates
+	|   |  |--● todos
+	|   |  |  |--todo_list.html
+	|   | 
+	|   |-- models.py (python class for each database table)
+	|   |-- urls.py (app. specific url mapping)
+	|   |-- views.py (view fns. to handle http request)
+	|
+	+---● TodoProject
+	|   |
+	|   |--setting.py (project config. file)
+	|   |--urls.py (url mapping for the project)
+	```
 
 ## 3. Create a Django App
 
