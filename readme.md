@@ -37,7 +37,7 @@ We can have as many applications as we need. In this project, I'm creating a new
 
 Project will have the following structure:
 
-TodoProject/ │ ├── TodoProject/ │ ├── init.py │ ├── settings.py # Project configuration file │ ├── urls.py # Routing and URL mapping │ └── wsgi.py │ ├── todos/ # New app for To-Do items │ ├── migrations/ # Auto-generated database migration files │ ├── static/ # Static files like CSS/JS │ │ └── todos/ │ │ └── styles.css │ ├── templates/ # HTML templates │ │ └── todos/ │ │ └── todo_list.html │ ├── models.py # Database models (tables) │ ├── urls.py # App-specific URL mapping │ └── views.py # Views to handle HTTP requests └── manage.py
+TodoProject\ │ ├── TodoProject\ │ ├── init.py │ ├── settings.py # Project configuration file │ ├── urls.py # Routing and URL mapping │ └── wsgi.py │ ├── todos\ # New app for To-Do items │ ├── migrations\ # Auto-generated database migration files │ ├── static\ # Static files like CSS/JS │ │ └── todos\ │ │ └── styles.css │ ├── templates\ # HTML templates │ │ └── todos\ │ │ └── todo_list.html │ ├── models.py # Database models (tables) │ ├── urls.py # App-specific URL mapping │ └── views.py # Views to handle HTTP requests └── manage.py
 
 ## 3. Create a Django App
 
@@ -58,18 +58,18 @@ TodoProject/ │ ├── TodoProject/ │ ├── init.py │ ├── sett
 
 ## 4. Set Up PostgreSQL Database
 
-**Object-Relational-Mapping (ORM) Frameworks:**/
-.NET - Entity Framework/
-PHP - CakePHP/
-Python - Django/
-/
-Django already supports Object-Relational Mapping (ORM). Using Python classes, we can create database tables, which are referred to as "models."/
-/
+**Object-Relational-Mapping (ORM) Frameworks:**\
+.NET - Entity Framework\
+PHP - CakePHP\
+Python - Django\
+\
+Django already supports Object-Relational Mapping (ORM). Using Python classes, we can create database tables, which are referred to as "models."\
+\
 Class: Represents a database table.
-Properties (inside the class): Represent table columns./
-The ORM framework automates the migrations process, where models are translated into physical database tables./
-/
-ORMs also allow you to manipulate the database using object-oriented code, instead of writing raw SQL queries./
+Properties (inside the class): Represent table columns.\
+The ORM framework automates the migrations process, where models are translated into physical database tables.\
+\
+ORMs also allow you to manipulate the database using object-oriented code, instead of writing raw SQL queries.\
 
 1. Install PostgreSQL (if you don't have it):
 
@@ -123,8 +123,8 @@ DROP DATABASE "dbname";  can be used to delete database. Postgres, template0, an
 
 Open `TodoProject/settings.py` and update the `DATABASES` setting:
 
-```python
-DATABASES = {
+    ```bash
+	DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'tododb',
@@ -132,53 +132,90 @@ DATABASES = {
         'PASSWORD': 'mypassword',
         'HOST': 'localhost',
         'PORT': '',  # Leave blank for default
-    }
-}
+	```
 
 ## 6. Define Models and Migrate Database
 
-**Do migrations (see other applications in settings.py, their models will be added too)**
-python3 manage.py makemigrations todos
-# Expected output:
-# Migrations for 'todos':
-#  todos/migrations/0001_initial.py
-#    - Create model Todo
+1. Define a Todo model inside todos/models.py:
 
-python3 manage.py sqlmigrate todos 0001
-# The command generates and displays the SQL commands that will be executed for the specified migration. Used for debugging, inspection purposes.
-python3 manage.py migrate
+    ```bash
+	from django.db import models
 
-# We can simply execute last command if we want to apply default settings
+	class Todo(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    completed = models.BooleanField(default=False)
+    ```
 
-**Test it**
-# List applied migrations
-python3 manage.py showmigrations todos
-# Access DB
-psql tododb
-# List tables
-\qt
-# Describe table schema
-\d todos_todo
-# Query the table
-SELECT * FROM todos_todo;
+2. Create migrations for the new model:
+    ```bash
+	python3 manage.py makemigrations todos
+	````
 
-**Configure routing for the app in urls.py**
-# Create todos/urls.py
-# Modify urls.py, add path to newly created file to main urls.py
-from django.urls import path, include
-urlpatterns = [
-    # existing admin path
-	path('todos/', include('todos.urls')),
-]
-# Modify todos/urls.py:
-from djando.urls import path
-from . import views
+Expected output:
+    ```bash
+	Migrations for 'todos':
+	todos/migrations/0001_initial.py
+	Create model Todo
+    ```
 
-urlpatterns = [
-	path('list/', views.list_todo_items),
-]
+3. Check the SQL commands that will be executed for the migration:
+	```bash
+	python3 manage.py sqlmigrate todos 0001
+	```
+This command generates and displays the SQL queries that will be run for the migration, which is useful for debugging and inspection.
 
-# Modify todos/views.py
-from django.http import HttpResponse
-def list_todo_items(request):
-	return HttpResponse('You are seeing HttpResponse from list_todo_items view.')
+4. Apply the migrations:
+	```bash
+	python3 manage.py migrate
+	````
+
+# 7. Verify Database and Migrations
+
+1. List the applied migrations:
+	```bash
+	python3 manage.py showmigrations todos
+	```
+2. To interact with the database directly, open the PostgreSQL shell and list the tables:
+	```bash
+	psql tododb
+	\dt
+	```
+3. To describe the schema of the todos_todo table:
+	```bash
+	\d todos_todo
+	```
+4. Query the todos_todo table:
+	```bash
+	SELECT * FROM todos_todo;
+	```
+
+# 8. Configure Routing
+
+1. Create a todos/urls.py file for app-specific URL mappings:
+	```bash
+	from django.urls import path, include
+	urlpatterns = [
+		# existing admin path
+		path('todos/', include('todos.urls')),
+	]
+	```
+
+2. Modify the main TodoProject/urls.py to include the todos app URLs:
+	```bash
+	from djando.urls import path
+	from . import views
+
+	urlpatterns = [
+		path('list/', views.list_todo_items),
+	]
+	```
+
+# 9. Create a Simple View
+
+1. In todos/views.py, create a simple view to display a message:
+	```bash
+	from django.http import HttpResponse
+	def list_todo_items(request):
+		return HttpResponse('You are seeing HttpResponse from list_todo_items view.')
+	```
