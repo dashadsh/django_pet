@@ -242,3 +242,28 @@ This command generates and displays the SQL queries that will be run for the mig
 	def list_todo_items(request):
 		return HttpResponse('You are seeing HttpResponse from list_todo_items view.')
 	```
+
+# 10. Create template
+
+1. Create templates/todos/todo_list.html:
+	```bash
+		<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<!-- Meta tags for character set and viewport -->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>To-Do List</title>
+	</head>
+	<body>
+
+	</body>
+	</html>
+	````
+
+2. Add bootstrap 
+
+3. Add font-awesome
+
+

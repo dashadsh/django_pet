@@ -5,7 +5,8 @@ from django.http import HttpResponse
 
 # we have to create a view function that will be called when the URL is visited
 def list_todo_items(request):
-	return HttpResponse('You are seeing HttpResponse from list_todo_items view.')
+	#return HttpResponse('You are seeing HttpResponse from list_todo_items view.')
+	return render(request, 'todos/02.html')
 
 # when i open the URL http://127.0.0.1:8000/todos/list/ in the browser, the view function will be called
 # and the HttpResponse will be returned to the browser:
