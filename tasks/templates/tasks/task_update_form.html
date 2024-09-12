@@ -1,0 +1,24 @@
+<!-- templates/tasks/task_update_form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark as completed</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mt-4">Mark as completed?</h1>
+		<!-- <p>Are you sure you want to mark "{{ object.title }}" as completed?</p> -->
+        <form method="post">
+            {% csrf_token %}
+            <!-- {{ form.as_p }} -->
+            <button type="submit" class="btn btn-primary mt-3">Yes</button>
+            <a href="{% url 'task_list' %}" class="btn btn-secondary mt-3">No, take me back</a>
+        </form>
+    </div>
+</body>
+
+</html>

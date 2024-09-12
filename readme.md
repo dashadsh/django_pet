@@ -1,22 +1,21 @@
-
 # To-Do List Application
 This is a simple To-Do List web application built with Django, PostgreSQL, and Bootstrap.
 
-# Features
+## Features
 
 - View a list of tasks
 - Add new tasks
 - Mark tasks as completed
 - Delete tasks
 
-# Prerequisites
+## Prerequisites
 
 - Python 3.8 or above
 - pip
-- PostgreSQL - realational database
+- PostgreSQL - relational database
 - psycopg2-binary
 
-# Setup
+## Setup
 
 **create a virtual environment (optional):** 
     ```bash
@@ -46,7 +45,7 @@ This is a simple To-Do List web application built with Django, PostgreSQL, and B
 	```
 
 **Include the App in INSTALLED_APPS**
-```bash
+	```bash
 	INSTALLED_APPS = [
 		'django.contrib.admin',
 		'django.contrib.auth',
@@ -127,6 +126,7 @@ This is a simple To-Do List web application built with Django, PostgreSQL, and B
 	```
 
 **Register Model with Admin Interface in tasks/admin.py**
+See: https://docs.djangoproject.com/en/5.1/ref/contrib/admin/
 	```bash
 	from django.contrib import admin
 	from .models import Task
@@ -140,12 +140,19 @@ This is a simple To-Do List web application built with Django, PostgreSQL, and B
 	```
 
 **Create & apply migrations**
+Migrations in Django are a way of propagating changes you make to your models (like adding or modifying fields) into the database schema.
 	```bash
 	python3 manage.py makemigrations
 	python3 manage.py migrate
 	```
+If you need to undo changes, you can roll back migrations to a previous state.
+	```bash
+	python3 manage.py migrate myapp 0001
+	```
+
 
 **Verify db**
+Django's ORM handles the translation of Python code to SQL queries and vice versa.
 	```bash
 	python3 manage.py shell
 	from tasks.models import Task
@@ -154,7 +161,14 @@ This is a simple To-Do List web application built with Django, PostgreSQL, and B
 
 **Create Views and Templates**
 Update tasks/views.py\
+Views handle the logic for processing requests, interacting with the data, and returning responses to the client.\
+We are using Class Based Views, see:\
+https://www.makeuseof.com/crud-app-with-django-class-based-views/\
+https://docs.djangoproject.com/en/4.2/topics/class-based-views/\
+
+\
 Update todolist_project/urls.py\
+\
 Create Templates at tasks/templates/tasks/\
 
 **Expected project structure**

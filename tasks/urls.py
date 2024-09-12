@@ -7,3 +7,8 @@ urlpatterns = [
     path('complete/<int:pk>/', TaskUpdateView.as_view(), name='complete_task'),  # Mark task as completed
     path('delete/<int:pk>/', TaskDeleteView.as_view(), name='delete_task'),  # Delete a task
 ]
+
+# URL PATTERNS
+# It is better to include <int:pk> in the URL pattern to make it more descriptive:
+# path('complete/<int:pk>/', TaskUpdateView.as_view(), name='complete_task'),
+# path('delete/<int:pk>/', TaskDeleteView.as_view(), name='delete_task'),
