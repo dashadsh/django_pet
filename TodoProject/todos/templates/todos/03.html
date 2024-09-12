@@ -1,3 +1,5 @@
+{% load static %} <!-- Loads static files for use in the template -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,24 +13,22 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
+	<!-- Link to custom CSS for additional styling -->
+	<link rel="stylesheet" href="{% static 'todos/styles.css' %}">
 </head>
 
-<!-- Add class to body tag for background color -->
 <body class="bg-dark">
 
-	<!-- Add container class to center the content -->
 	<div class="container">
 		<div class="row mt-5">
 			<div class="col-md-8 offset-md-2">
 
-				<!-- Add card class to style the content -->
 				<div class="card">
                     <div class="card-header shadow-sm bg-white">
-                        <!-- Header of the card with title and icon -->
                         <h1 class="display-5 text-info"><i class="fas fa-check-double"></i> Todos</h1>
                     </div>
 
-					<!-- Add card-body class to style the content -->
 					<div class="card-body">
 						<!-- Content goes here -->
 					</div>

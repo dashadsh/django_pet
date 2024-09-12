@@ -263,7 +263,12 @@ This command generates and displays the SQL queries that will be run for the mig
 	```
 Check out 01.html and 02.html.
 
-2. Modify views.py by encluding new response:
+2. Modify template:\
+Include bootstrap (see 01.html)\
+Add some styling (see 02.html)\
+Create external todos/static/todos/styles.css and include it (see 03.html)\
+
+3. Modify views.py by encluding new response:
 	```bash
 	def list_todo_items(request):
 		return render(request, 'todos/02.html')

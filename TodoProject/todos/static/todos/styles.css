@@ -1,0 +1,12 @@
+/* static/todos/styles.css */
+.card-header h1 {
+    color: #8B0000 !important;  /* Set header text color to black */
+}
+
+/* body.bg-dark {
+    background-color: #1e291f;  /* Dark background for the body */
+/* } */
+
+/* .card {
+    border-radius: 5px;  /* Rounded corners for the card */
+/* } */
