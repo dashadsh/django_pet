@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 # Declare a new model with the name "Task"
 class Task(models.Model):
     # Fields of the model
